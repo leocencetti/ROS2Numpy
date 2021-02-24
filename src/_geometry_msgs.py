@@ -50,3 +50,16 @@ def _(msg: Pose2D):
         msg.y,
         msg.theta
     ])
+
+@ros2numpy.register(TwistStamped)
+def _(msg: TwistStamped):
+    return np.concatenate([
+        ros2numpy(msg.twist)
+    ])
+
+@ros2numpy.register(Twist)
+def _(msg: Twist):
+    return np.concatenate([
+        ros2numpy(msg.linear),
+        ros2numpy(msg.angular)
+    ])
